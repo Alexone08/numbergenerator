@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Numeri Casuali</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Font custom -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #6a0dad, #c84ce0);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Nasconde le decorazioni */
+        }
+
+        .decorazione {
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 0;
+            animation: float 3s ease-in-out infinite; /* Animazione di galleggiamento */
+        }
+
+        .decorazione.left {
+            left: -50px; /* Posizione a sinistra */
+            transform: rotate(-30deg);
+            animation-delay: 0s;
+        }
+
+        .decorazione.right {
+            right: -50px; /* Posizione a destra */
+            transform: rotate(30deg);
+            animation-delay: 1s; /* Differente delay per la sincronizzazione */
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            z-index: 1; /* Assicura che il contenitore sia sopra le decorazioni */
+            animation: fadeIn 1s ease-in-out; /* Animazione di apparizione */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .testo {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease; /* Animazione per il titolo */
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #random-number {
+            font-size: 4em;
+            margin-top: 20px;
+            color: #cc00ff; /* Colore giallo per il numero */
+            transition: transform 0.3s ease;
+        }
+
+        #random-number:hover {
+            transform: scale(1.2); /* Effetto di ingrandimento al passaggio del mouse */
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.2em;
+            background-color: #840b9c; /* Colore rosa */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c400f5; /* Colore rosa scuro al passaggio del mouse */
+            transform: translateY(-2px);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 0.8em;
+            z-index: 1; /* Assicura che il footer sia sopra le decorazioni */
+        }
+    </style>
+</head>
+<body>
+    <div class="decorazione left"></div>
+    <div class="decorazione right"></div>
+
+    <div class="container">
+        <div class="testo">Generatore di Numeri</div>
+        <p>Premi il pulsante per generare un numero casuale tra 0 e 100:</p>
+        <button onclick="generateRandomNumber()">Genera</button>
+        <div id="random-number"></div>
+    </div>
+
+    <footer>
+        &copy; 2024 Alexone. Tutti i diritti riservati.
+    </footer>
+
+    <script>
+        function generateRandomNumber() {
+            const randomNumber = Math.floor(Math.random() * 101); // Genera un numero tra 0 e 100
+            document.getElementById('random-number').innerText = randomNumber;
+        }
+    </script>
+</body>
+</html>
